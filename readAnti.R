@@ -1,0 +1,13 @@
+readAnti <- function(fileName)
+
+data <- read.table(fileName, header = FALSE)
+antiData <- data.frame(subj = factor(data$V1), condn = factor(data$V2), acc=data$V3, rt=data$V4)
+
+tapply(antiData$acc,antiData$condn,mean)
+tapply(antiData$rt,antiData$condn,mean)
+
+antiDatalm <- lm(antiData$acc~antiData$condn)
+summary(antiDatalm)
+
+antiDatalm <- lm(antiData$rt~antiData$condn)
+summary(antiDatalm)
