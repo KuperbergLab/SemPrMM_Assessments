@@ -1,4 +1,8 @@
-readAnti <- function(fileName)
+behav_save_df_Anti <- function(subjType)
+
+filePath <- "/cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/"
+fileName <- paste(filePath,'longOut',subjType",sep="")
+
 
 data <- read.table(fileName, header = FALSE)
 antiData <- data.frame(subj = factor(data$V1), condn = factor(data$V2), acc=data$V3, rt=data$V4)
@@ -11,3 +15,4 @@ summary(antiDatalm)
 
 antiDatalm <- lm(antiData$rt~antiData$condn)
 summary(antiDatalm)
+
