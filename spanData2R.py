@@ -8,8 +8,8 @@ from operator import itemgetter, attrgetter
 
 def spanData2R(subjType):
         data_path = '/cluster/kuperberg/SemPrMM/assessment/'
-        inFile1 = data_path + 'span/Input/' + 'WM-SpanLog_' + str(subjType)
-        outFile1 = data_path + 'results/span/R/' + 'WM-SpanLog_Long' + str(subjType)    
+        inFile1 = data_path + 'span/Input/' + 'WM-SpanLog_' + str(subjType)  
+        outFile1 = data_path + 'results/span/R/' + str(subjType) + '_WM-Span_Long'     
         print(inFile1)
         
 ##     if (subjType == 'ac'):
