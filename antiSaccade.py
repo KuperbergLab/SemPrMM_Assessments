@@ -56,7 +56,7 @@ def readTable(inFile,outFile,resultType):
    
    def longResults(inFile, outFile):
       myFile2 = open(outFile, "a")   
-      if inFile=="SC10" or inFile=="AC1" or inFile=="YA1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
+      if inFile=="sc10" or inFile=="ac1" or inFile=="ya1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
         myFile2.write(str('SubID') + " ")
         myFile2.write(str('Condition')+ " " )
         myFile2.write(str('Accuracy')+ " " )
@@ -76,7 +76,7 @@ def readTable(inFile,outFile,resultType):
    def shortResults(inFile, outFile):
       myFile3 = open(outFile, "a") 
       #if os.stat(inFile).st_size == 0: ## Check to see if inFile is empty- to Enter Header on the first Row
-      if inFile=="SC10" or inFile=="AC1" or inFile=="YA1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
+      if inFile=="sc10" or inFile=="ac1" or inFile=="ya1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
         myFile3.write(str('SubID') + " ")
         myFile3.write(str('ProAcc%')+ " " )
         myFile3.write(str('AntiAcc%')+ " " )
