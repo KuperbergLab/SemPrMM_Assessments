@@ -3,10 +3,10 @@ behav_stats_antisaccade <-function(subjType){
 ###This function outputs behavioral stats for the AntiSaccade Experiment 
 
 filePath <- "/cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/"
-fileName <- paste(filePath,'AntiSaccade_',subjType,'_accuracy.df',sep="")
+fileName <- paste(filePath,subjType,'_AntiSaccade_accuracy.df',sep="")
 load(fileName)
 
-outFile <- paste(filePath,'AntiSaccade_',subjType,'_acc_stats.txt',sep="")
+outFile <- paste(filePath,subjType,'_AntiSaccade_acc_stats.txt',sep="")
 sink(outFile)
 
 ###################################################
