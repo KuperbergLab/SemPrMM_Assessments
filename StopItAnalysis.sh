@@ -2,32 +2,35 @@
 
 #usage: StopItAnalysis.sh subjType
 
-#usage: subjType: SC AC or YA
+#usage: subjType: sc or ac or ya (lower case)
 
-echo 'Clearing existing results from SemPrMM/assessment/results/anti-saccade/ folder'
+echo 'Clearing existing results from SemPrMM/assessment/results/stopit/ folder'
 cd /autofs/cluster/kuperberg/SemPrMM/assessment/results/stop-it/
-rm StopItResults_$1
+rm $1_StopItResults
 
-	if ($1 == SC) then
+	if ($1 == sc) then
 	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/stop-it
-	   foreach f ( stop-SC* ) 
-		 python /cluster/kuperberg/SemPrMM/assessment/scripts/stopit.py $f /cluster/kuperberg/SemPrMM/assessment/results/stop-it/StopItResults_SC
+	   foreach f ( stop-sc* ) 
+		 python /cluster/kuperberg/SemPrMM/assessment/scripts/stopit.py $f /cluster/kuperberg/SemPrMM/assessment/results/stop-it/sc_StopItResults
 	   end
+	   echo 'Completed. See result in SemPrMM/assessment/results/stop-it folder'
 	endif
 	
-	if ($1 == YA) then
+	if ($1 == ya) then
 	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/stop-it	   
-	   foreach f ( stop-YA* )
-		   python /cluster/kuperberg/SemPrMM/assessment/scripts/stopit.py $f /cluster/kuperberg/SemPrMM/assessment/results/stop-it/StopItResults_YA
+	   foreach f ( stop-ya* )
+		   python /cluster/kuperberg/SemPrMM/assessment/scripts/stopit.py $f /cluster/kuperberg/SemPrMM/assessment/results/stop-it/ya_StopItResults
 	   end
+	   echo 'Completed. See result in SemPrMM/assessment/results/stop-it folder'
 	endif 
 	
-	if ($1 == AC) then
+	if ($1 == ac) then
 	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/stop-it
-	   foreach f ( stop-AC* )
-		  python /cluster/kuperberg/SemPrMM/assessment/scripts/stopit.py $f /cluster/kuperberg/SemPrMM/assessment/results/stop-it/StopItResults_AC
+	   foreach f ( stop-ac* )
+		  python /cluster/kuperberg/SemPrMM/assessment/scripts/stopit.py $f /cluster/kuperberg/SemPrMM/assessment/results/stop-it/ac_StopItResults
 	   end
+	   echo 'Completed. See result in SemPrMM/assessment/results/stop-it folder'
 	endif
 
 
-echo 'Completed. See result in SemPrMM/assessment/results/stop-it folder'
+
