@@ -3,6 +3,7 @@
 
 ##It is run recursively for all the subjects in the stop-it folder
 ##by being called by the shell script SemPrMM/assessment/scripts/StopItAnalysis.sh
+##results are stored in the assessment/results/stop-it folder 
  
 
 import sys
@@ -44,9 +45,9 @@ def readTable(inFile, outFile):
                 cor_resp=cor_resp + 1
    rt_mean=(float(rt_sum)/count_rt)
    ssd_mean=(float(ssd_sum)/signal_count)
-   ssrt=(rt_mean-ssd_mean)
-   Pcor_resp=(float(cor_resp)/signal_count)*100
-   print(rt_mean)
+   ssrt=round((rt_mean-ssd_mean),4)
+   Pcor_resp=round((float(cor_resp)/signal_count)*100,3)
+##   print(rt_mean)
 ##   print(ssd_mean)
 ##   print(ssrt)
 ##   print(Pcor_resp)
@@ -56,11 +57,12 @@ def readTable(inFile, outFile):
    subjID=str.split(str(subjID[0]), 'stop-')
    subjID=str(subjID[1])
    
-   if inFile =='Jane':  ## Change this to be the first file in your folder.
-        myFile2.write(str('SubID') + " ")
-        myFile2.write(str('SSRT')+ " " )
-        myFile2.write("\n")
-        myFile2.write(str(ssrt))
+   if subjID == "ya10" or subjID == "sc10" or subjID == "ac10":  ## Change this to be the first file in your folder.
+        myFile2.write("SubID")
+        myFile2.write("\t")
+        myFile2.write("%CorResp")
+        myFile2.write("\t")
+        myFile2.write("SSRT")
         myFile2.write("\n")
         myFile2.close()
    else:
