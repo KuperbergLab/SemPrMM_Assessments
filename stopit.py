@@ -57,7 +57,7 @@ def readTable(inFile, outFile):
    subjID=str.split(str(subjID[0]), 'stop-')
    subjID=str(subjID[1])
    
-   if subjID == "ya10" or subjID == "sc10" or subjID == "ac10":  ## Change this to be the first file in your folder.
+   if subjID == "ya1" or subjID == "sc1" or subjID == "ac1":  ## Change this to be the first file in your folder.
         myFile2.write("SubID")
         myFile2.write("\t")
         myFile2.write("%CorResp")
