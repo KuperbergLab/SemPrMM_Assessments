@@ -76,7 +76,7 @@ def readTable(inFile,outFile,resultType):
    def shortResults(inFile, outFile):
       myFile3 = open(outFile, "a") 
       #if os.stat(inFile).st_size == 0: ## Check to see if inFile is empty- to Enter Header on the first Row
-      if inFile=="sc10" or inFile=="ac1" or inFile=="ya1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
+      if inFile=="sc4" or inFile=="ac1" or inFile=="ya1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
         myFile3.write(str('SubID') + " ")
         myFile3.write(str('ProAcc%')+ " " )
         myFile3.write(str('AntiAcc%')+ " " )
@@ -92,9 +92,9 @@ def readTable(inFile,outFile,resultType):
       myFile3.write("\n")
       myFile3.close()
 
-   if resultType == '1':
+   if resultType == 'short':
       shortResults(inFile, outFile)
-   elif resultType == '2':
+   elif resultType == 'long':
       longResults(inFile, outFile)
    else:
       print("Enter 1 for Short Form or 2 for Long form of Results")
