@@ -1,83 +1,47 @@
 #!/bin/csh -f
-#usage: AntiSaccadeAnalysis.sh subjType resultType
+#usage: AntiSaccadeAnalysis.sh subjType resultType listPrefix
 
 # subjType: sc or ac or ya
-# resultType: 1 - Short Form
-#           : 2 - Long Form
-
+# resultType: short - Short Form
+#           : long - Long Form
+#listPrefix: ac.n10.meeg.b .... 
 
 echo 'Converting text files to the Unix format and saving in the SubjGroup_mod folder'
-if ($1 == sc) then
-   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/SC_orig
-   foreach f ( sc* )
-        tr '\r' '\n' < $f > ../SC_mod/$f 
-   end
-endif 
-if ($1 == ac) then
-   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/AC_orig
-   foreach f ( ac* )
-        tr '\r' '\n' < $f > ../AC_mod/$f 
-   end
-endif 
+
+cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/$1_orig
+foreach f ( $1* )
+        tr '\r' '\n' < $f > ../$1_mod/$f 
+end
+
 
 echo 'Clearing existing results from SemPrMM/assessment/results/anti-saccade/ folder'
-if ($2 == 1) then 
+if ($2 == short) then 
        cd /autofs/cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/
-       rm $1_AntiSacc_short
+       rm $3_AntiSacc_short
 else 
        cd /autofs/cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/
-       rm $1_AntiSacc_long 
+       rm $3_AntiSacc_long 
 endif
        
-#Short Form of Output
-if ($2 == 1) then
 
-	if ($1 == sc) then
-	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/SC_mod
-	   foreach f ( sc* ) 
-		   python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $f /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/$1_AntiSacc_short $2
-	   end
-	endif
-	
-	if ($1 == ya) then
-	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/YA_mod
-	   foreach f ( ya* )
-		   python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $f /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/$1_AntiSacc_short $2
-	   end
-	endif 
-	
-	if ($1 == ac) then
-	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/AC_mod
-	   foreach f ( ac* )
-		  python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $f /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/$1_AntiSacc_short $2
-	   end
-	endif
-    echo 'Completed. See results in SemPrMM/assessment/results/anti-saccade/ folder'
+#Short Form of Output
+if ($2 == short) then
+    	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/$1_mod
+           echo 'Inside'
+           foreach line (`cat /autofs/cluster/kuperberg/SemPrMM/assessment/scripts/function_input/$3.txt`)
+                  echo $line
+                  python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $line /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/$3_AntiSacc_short $2	   
+           end
+           echo 'Completed. See results in SemPrMM/assessment/results/anti-saccade/ folder'
 endif
 
 #Long Form of Output
-if ($2 == 2) then 
-
-	if ($1 == sc) then
-	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/SC_mod
-	   foreach f ( sc* ) 
-		   python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $f /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/$1_AntiSacc_long $2
+if ($2 == long) then 
+	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/$1_mod
+           foreach line (`cat /autofs/cluster/kuperberg/SemPrMM/assessment/scripts/function_input/$3.txt`)
+                   echo $line 
+		   python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $line /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/$3_AntiSacc_long $2
 	   end
-	endif
-	
-	if ($1 == ya) then
-	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/YA_mod
-	   foreach f ( ya* )
-		   python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $f /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/$1_AntiSacc_long $2
-	   end
-	endif 
-	
-	if ($1 == ac) then
-	   cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/AC_mod
-	   foreach f ( ac* )
-		  python /cluster/kuperberg/SemPrMM/assessment/scripts/antiSaccade.py $f /cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/$1_AntiSacc_long $2
-	   end
-	endif
-	echo 'Completed. See results in SemPrMM/assessment/results/anti-saccade/R folder'
+	   echo 'Completed. See results in SemPrMM/assessment/results/anti-saccade/R folder'
 endif
 
