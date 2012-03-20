@@ -9,9 +9,11 @@
 echo 'Converting text files to the Unix format and saving in the SubjGroup_mod folder'
 
 cd /autofs/cluster/kuperberg/SemPrMM/assessment/anti-saccade/$1_orig
-foreach f ( $1* )
+if ($1 == ac || $1 == sc) then 
+   foreach f ( $1* )
         tr '\r' '\n' < $f > ../$1_mod/$f 
-end
+  end
+endif
 
 
 echo 'Clearing existing results from SemPrMM/assessment/results/anti-saccade/ folder'
