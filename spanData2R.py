@@ -63,7 +63,7 @@ def spanData2R(subjType, listPrefix):
                ##print(lineTemp)
                #print(lineTemp[0])
                for j in range(1,span_len):
-                     if str(lineTemp[0]) in subject_list: 
+                     if str(lineTemp[0]) in subject_list: # Compares the subject name to check if it exists in the listPrefix file. 
                                                
                           myFile2.write(lineTemp[0] + '\t\t')
                           myFile2.write(header[j] + '\t\t')
