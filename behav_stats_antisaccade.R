@@ -1,12 +1,12 @@
-behav_stats_antisaccade <-function(subjType){
+behav_stats_antisaccade <-function(subjType,listPrefix){
 
 ###This function outputs behavioral stats for the AntiSaccade Experiment 
 
 filePath <- "/cluster/kuperberg/SemPrMM/assessment/results/anti-saccade/R/"
-fileName <- paste(filePath,subjType,'_AntiSaccade_accuracy.df',sep="")
+fileName <- paste(filePath,listPrefix,'_AntiSaccade_accuracy.df',sep="")
 load(fileName)
 
-outFile <- paste(filePath,subjType,'_AntiSaccade_acc_stats.txt',sep="")
+outFile <- paste(filePath,listPrefix,'_AntiSaccade_acc_stats.txt',sep="")
 sink(outFile)
 
 ###################################################
@@ -25,6 +25,21 @@ print(paste("Anti_MeanAccuracy:", round(mean(antiData.anti$acc),5), sep=" "))
 
 ##compute overall SD
 print(paste("ProAnti_SD:",round(sd(antiData.all$acc),3), sep=" "))
+
+##################################################
+##################ANOVAS##########################
+
+antiData.all$condn<-factor(antiData.all$cond,exclude=NULL);
+levels(antiData.all$condn)<-c("pro", "anti"); 
+
+antiData.all.aov = aov(acc ~ condn + Error(subj/(condn)),data=antiData.all)
+numSubj <-nlevels(factor(antiData.all$subj, exclude= NA))
+print(paste("Table of Mean Accuracies, n:", numSubj,sep=" "))
+print(model.tables(antiData.all.aov, "means"), digits = 5)
+
+library('ez')
+eztest <-ezANOVA(data=antiData.all,dv = .(acc),wid=.(subj),within=.(condn),type=3,detailed=TRUE)
+print(eztest)
 
 #######################################################
 
