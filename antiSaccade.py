@@ -56,7 +56,7 @@ def readTable(inFile,outFile,resultType):
    
    def longResults(inFile, outFile):
       myFile2 = open(outFile, "a")   
-      if inFile=="sc10" or inFile=="ac1" or inFile=="ya1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
+      if inFile=="sc4" or inFile=="ac1" or inFile=="ya1":  ## Change this to be the first file in your folder. Eg:SC10 or AC1 or YA1
         myFile2.write(str('SubID') + " ")
         myFile2.write(str('Condition')+ " " )
         myFile2.write(str('Accuracy')+ " " )
