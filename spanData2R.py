@@ -53,8 +53,8 @@ def spanData2R(subjType, listPrefix):
 
         header = dataTable1[0]
         span_len = len(header)
-        print(runCount)
-        print(span_len)
+        #print(runCount)
+        #print(span_len)
 
         myFile2 = open(outFile1, "w")
         myFile2.write("Sub:\t\tSpan\t\tNumCorrect\n")	
